@@ -26,9 +26,9 @@ const Icon = styled(IconButton)(({ theme }) => ({
   color: "primary",
   position: "absolute",
   top: 500,
-  left: 160,
+  left: 190,
   [theme.breakpoints.up("sm")]: {
-    marginLeft: "320px",
+    marginLeft: "500px",
     top: 510,
   },
 }));
@@ -45,7 +45,7 @@ const Typograp = styled(Typography)(({ theme }) => ({
 }));
 const StackContact = styled(Stack)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
-    justifyContent:"end"
+    justifyContent: "end",
   },
 }));
 const CardLeft = styled(Card)(({ theme }) => ({
@@ -74,7 +74,7 @@ const CardRight = styled(Card)(({ theme }) => ({
 
 export const Content = () => {
   return (
-    <Box flex={4}>
+    <Box flex={5}>
       <Card sx={{ marginTop: 2 }}>
         <CardMedia
           component="img"
@@ -103,16 +103,38 @@ export const Content = () => {
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             100 Followers
           </Typography>
-          <AvatarGroup
+          {/* <AvatarGroup
             total={100}
             sx={{ mb: 1.5, position: "absolute", marginLeft: "160px" }}
-          >
-            <Avatar alt="Remy Sharp" src={Img1} />
-            <Avatar alt="Travis Howard" src={Img1} />
-            <Avatar alt="Cindy Baker" src={Img1} />
-            <Avatar alt="Agnes Walker" src={Img1} />
-            <Avatar alt="Trevor Henderson" src={Img1} />
-          </AvatarGroup>
+          > */}
+          <Stack direction="row">
+            <Avatar
+              alt="Remy Sharp"
+              src={Img1}
+              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+            />
+            <Avatar
+              alt="Travis Howard"
+              src={Img1}
+              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+            />
+            <Avatar
+              alt="Cindy Baker"
+              src={Img1}
+              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+            />
+            <Avatar
+              alt="Agnes Walker"
+              src={Img1}
+              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+            />
+            <Avatar
+              alt="Trevor Henderson"
+              src={Img1}
+               sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+            />
+          </Stack>
+          {/* </AvatarGroup> */}
         </CardContent>
       </Card>
 
@@ -145,11 +167,7 @@ export const Content = () => {
             <Typograp variant="h5" component="div">
               CONTACTS
             </Typograp>
-            <StackContact
-              direction="row"
-              mt={0.5}
-              gap={5}
-            >
+            <StackContact direction="row" mt={0.5} gap={5}>
               <FacebookIcon color="primary" />
               <GitHubIcon color="secondary" />
               <TwitterIcon color="success" />
@@ -163,7 +181,9 @@ export const Content = () => {
               <Map />
             </Typography>
             <Typograph variant="body" component="div" style={{ marginTop: 10 }}>
-              <div><span>Email: </span> asdjasd@gmail.com</div>
+              <div>
+                <span>Email: </span> asdjasd@gmail.com
+              </div>
             </Typograph>
             <Typograph
               variant="body"
@@ -200,24 +220,20 @@ export const Content = () => {
         <Box>
           <CardRight variant="outlined">
             <CardContent>
-              <Typography
-                variant="h5"
-                component="div"
-                style={{ float: "left" }}
-              >
+              <Typograp variant="h5" component="div" style={{ float: "left" }}>
                 CONTACTS
-              </Typography>
-              <Stack
+              </Typograp>
+              <StackContact
                 direction="row"
                 mt={0.5}
-                gap={5}
+                gap={2}
                 style={{ justifyContent: "end" }}
               >
                 <FacebookIcon color="primary" />
                 <GitHubIcon color="secondary" />
                 <TwitterIcon color="success" />
                 <InstagramIcon color="error" />
-              </Stack>
+              </StackContact>
               <Typography
                 variant="body2"
                 component="div"

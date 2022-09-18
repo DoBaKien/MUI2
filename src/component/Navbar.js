@@ -61,7 +61,7 @@ export const Navbar = () => {
         <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }} onClick={handleHome}>
           Bee Tech
         </Typography>
-        <PetsIcon sx={{ display: { xs: "block", sm: "none" } }} />
+        <PetsIcon sx={{ display: { xs: "block", sm: "none" } }} onClick={handleHome}/>
         <Search>
           <InputBase placeholder="Search..." />
         </Search>

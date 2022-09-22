@@ -1,17 +1,12 @@
-import { Box, styled } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import {Post} from "./Post"
 export const Feed = () => {
-  const Boxx = styled(Box)(({ theme }) => ({
-    flex:20,
-    [theme.breakpoints.up("sm")]: {
-      flex:5,
-    },
-  }));
-  return <Boxx>
+
+  return <Box sx={{ flex: { xl: 6, md: 10, sm: 20,xs:6 }}}>
     <Post/>
     <Post/>
     <Post/>
     <Post/>
-  </Boxx>;
+  </Box>;
 };

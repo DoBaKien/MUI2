@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./All";
 import { BrowserRouter } from "react-router-dom";
+import "./translation/i18next"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

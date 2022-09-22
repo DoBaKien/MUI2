@@ -20,8 +20,10 @@ import ModeNightIcon from "@mui/icons-material/ModeNight";
 import { useNavigate } from "react-router-dom";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useTranslation } from "react-i18next";
 
 export const Sidebar = ({ mode, setMode }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const handle = () => {
     navigate("/content");
@@ -30,8 +32,8 @@ export const Sidebar = ({ mode, setMode }) => {
     navigate("/home");
   };
   return (
-    <Box flex={1}>
-      <Box p={2} sx={{ display: { xs: "none", sm: "block" } }}>
+    <Box sx={{ flex: { xl: 1, md: 2, sm: 2,xs:1 }}}>
+      <Box p={2} sx={{ display: { xs: "none", lg: "block" } }}>
         <Box position="fixed">
           <List>
             <ListItem disablePadding>
@@ -39,7 +41,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary="HomePage" />
+                <ListItemText primary={t("Home")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -47,7 +49,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <ArticleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Page" />
+                <ListItemText primary={t("Page")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -55,7 +57,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <GroupIcon />
                 </ListItemIcon>
-                <ListItemText primary="Group" />
+                <ListItemText primary={t("Group")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -63,7 +65,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary="Market" />
+                <ListItemText primary={t("Market")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -71,7 +73,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <PersonIcon />
                 </ListItemIcon>
-                <ListItemText primary="Friend" />
+                <ListItemText primary={t("Friend")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -79,7 +81,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <InsertPhotoIcon />
                 </ListItemIcon>
-                <ListItemText primary="Photo" />
+                <ListItemText primary={t("Photo")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -87,7 +89,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <SettingsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Setting" />
+                <ListItemText primary={t("Setting")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -95,7 +97,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <AccountBoxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Profile" />
+                <ListItemText primary={t("Profile")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -111,7 +113,7 @@ export const Sidebar = ({ mode, setMode }) => {
           </List>
         </Box>
       </Box>
-      <Box flex={0.1} sx={{ display: { sm: "none", xs: "block" } }}>
+      <Box flex={0.1} sx={{ display: { lg: "none", xs: "block" } }}>
         <Box position="fixed">
           <List style={{ width: "50px" }}>
             <ListItem disablePadding>
@@ -176,7 +178,11 @@ export const Sidebar = ({ mode, setMode }) => {
                 onClick={(e) => setMode(mode === "light" ? "dark" : "light")}
                 color="inherit"
               >
-                {mode === "dark" ? <Brightness7Icon fontSize="large"/> : <Brightness4Icon fontSize="large"/>}
+                {mode === "dark" ? (
+                  <Brightness7Icon fontSize="large" />
+                ) : (
+                  <Brightness4Icon fontSize="large" />
+                )}
               </IconButton>
             </ListItem>
           </List>

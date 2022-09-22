@@ -6,32 +6,21 @@ import {
   IconButton,
   CardMedia,
   CardContent,
-  AvatarGroup,
   Tooltip,
   styled,
   Stack,
+  Button,
 } from "@mui/material";
 import React from "react";
 import Img2 from "../imgs/2.jpg";
 import Img1 from "../imgs/1.jpg";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import EditIcon from '@mui/icons-material/Edit';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Map from "./Map";
-
-const Icon = styled(IconButton)(({ theme }) => ({
-  background: "none",
-  color: "primary",
-  position: "absolute",
-  top: 500,
-  left: 190,
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: "500px",
-    top: 510,
-  },
-}));
+import { useTranslation } from "react-i18next";
 
 const Typograph = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
@@ -73,69 +62,86 @@ const CardRight = styled(Card)(({ theme }) => ({
 }));
 
 export const Content = () => {
+  const { t } = useTranslation();
   return (
-    <Box flex={5}>
+    <Box sx={{ flex: { xl: 6, md: 10, sm: 20, xs: 6 } }}>
       <Card sx={{ marginTop: 2 }}>
-        <CardMedia
-          component="img"
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="label"
           height="300px"
-          image={Img2}
-          alt="Paella dish"
-        />
-        <CardContent style={{ float: "left" }}>
-          <CardMedia
-            component="img"
-            height="150px"
-            image={Img1}
-            alt="Paella dish"
-          />
-          <Icon color="primary" aria-label="upload picture" component="label">
-            <input hidden accept="image/*" type="file" />
-            <Tooltip title="Choose Image" placement="left">
-              <PhotoCamera fontSize="large" />
-            </Tooltip>
-          </Icon>
-        </CardContent>
-        <CardContent>
-          <Typography variant="h5" component="div">
-            Đỗ Bá Kiên
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            100 Followers
-          </Typography>
-          {/* <AvatarGroup
-            total={100}
-            sx={{ mb: 1.5, position: "absolute", marginLeft: "160px" }}
-          > */}
-          <Stack direction="row">
-            <Avatar
-              alt="Remy Sharp"
-              src={Img1}
-              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+          style={{ width: "100%", padding: 0 }}
+        >
+          <input hidden accept="image/*" type="file" />
+          <Tooltip title="Changle Cover" placement="bottom">
+            <CardMedia
+              component="img"
+              height="300px"
+              image={Img2}
+              alt="Paella dish"
             />
-            <Avatar
-              alt="Travis Howard"
-              src={Img1}
-              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
-            />
-            <Avatar
-              alt="Cindy Baker"
-              src={Img1}
-              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
-            />
-            <Avatar
-              alt="Agnes Walker"
-              src={Img1}
-              sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
-            />
-            <Avatar
-              alt="Trevor Henderson"
-              src={Img1}
-               sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
-            />
-          </Stack>
-          {/* </AvatarGroup> */}
-        </CardContent>
+          </Tooltip>
+        </IconButton>
+        <Card sx={{ paddingLeft: { xl: 0, md: 0, sm: 0,xs: 10 } }}>
+          <CardContent style={{ float: "left" }}>
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              style={{ padding: 0 }}
+            >
+              <input hidden accept="image/*" type="file" />
+              <Tooltip title="Changle Avatar" placement="left">
+                <CardMedia
+                  component="img"
+                  height="150px"
+                  image={Img1}
+                  alt="Paella dish"
+                />
+              </Tooltip>
+            </IconButton>
+          </CardContent>
+          <CardContent style={{ float: "left" }}>
+            <Typography variant="h5" component="div">
+              Đỗ Bá Kiên
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              100 {t("Followers")}
+            </Typography>
+
+            <Stack direction="row">
+              <Avatar
+                alt="Remy Sharp"
+                src={Img1}
+                sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+              />
+              <Avatar
+                alt="Travis Howard"
+                src={Img1}
+                sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+              />
+              <Avatar
+                alt="Cindy Baker"
+                src={Img1}
+                sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+              />
+              <Avatar
+                alt="Agnes Walker"
+                src={Img1}
+                sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+              />
+              <Avatar
+                alt="Trevor Henderson"
+                src={Img1}
+                sx={{ width: { sm: 40, xs: 24 }, height: { sm: 40, xs: 24 } }}
+              />
+            </Stack>
+          </CardContent>
+          <CardContent sx={{ textAlign: { sm: "right", xs: "left" } }}>
+            <Button variant="contained" startIcon={<EditIcon />}>{t("Edit Profile")}</Button>
+          </CardContent>
+        </Card>
       </Card>
 
       <Box>

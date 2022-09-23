@@ -12,8 +12,10 @@ import {
   List,
 } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Img1 from "../imgs/1.jpg";
 export const Rightbar = () => {
+  const { t } = useTranslation();
   const itemData = [
     {
       img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
@@ -68,7 +70,7 @@ export const Rightbar = () => {
     <Box flex={2} p={2} sx={{ display: { xs: "none", sm: "block" } }}>
       <Box position="fixed" width={300}>
         <Typography variant="h6" fontWeight={100}>
-          Online Friends
+          {t("Online Friend")}
         </Typography>
         <AvatarGroup total={24}>
           <Avatar alt="Remy Sharp" src={Img1} />
@@ -78,7 +80,7 @@ export const Rightbar = () => {
           <Avatar alt="Trevor Henderson" src={Img1} />
         </AvatarGroup>
         <Typography variant="h6" fontWeight={100} mt={2} mb={2}>
-          Lastest Photo
+          {t("Lastest Photo")}
         </Typography>
         <ImageList
           sx={{ width: 400, height: 200 }}
@@ -98,15 +100,15 @@ export const Rightbar = () => {
           ))}
         </ImageList>
         <Typography variant="h6" fontWeight={100} mt={2}>
-          Lastest Conversation
+          {t("Lastest Conversation")}
         </Typography>
         <List
           sx={{
             width: 400,
             bgcolor: "background.paper",
             overflow: "auto",
-            height:"300px",
-            marginTop:"10px"
+            height: "300px",
+            marginTop: "10px",
           }}
         >
           <ListItem alignItems="flex-start">

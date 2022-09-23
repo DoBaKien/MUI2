@@ -8,12 +8,11 @@ import Add from "./component/Add";
 function App({mode,setMode}) {
   
   return (
-  
       <Box bgcolor={"background.default"} color={"text.primary"}>
-        <Navbar color="black" />
+        <Navbar color="black"/>
         <Stack direction="row"  justifyContent="space-evenly">
           <Sidebar setMode={setMode} mode={mode} />
-          <Feed ></Feed>
+          <Feed/>
           <Rightbar sx={{ display: { xs: "none", sm: "block" } }}/>
         </Stack>
         <Add />

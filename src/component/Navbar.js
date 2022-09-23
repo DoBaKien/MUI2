@@ -72,18 +72,17 @@ export const Navbar = () => {
     navigate("/home");
   };
 
-  const [age, setAge] = React.useState("");
   const { t, i18n } = useTranslation();
+  const [age, setAge] = React.useState("");
   const [a, setA] = useState("");
+
   const handleChange = (event) => {
     setAge(event.target.value);
-    console.log(event.target.value);
     setA(event.target.value);
+    localStorage.setItem("lng", event.target.value);
+    console.log(event.target.value);
     return i18n.changeLanguage(event.target.value);
   };
-  React.useEffect(() => {
-    localStorage.setItem("lng", a);
-  }, [a]);
 
   return (
     <AppBar position="sticky">
@@ -110,7 +109,7 @@ export const Navbar = () => {
             autoWidth
             sx={{ height: 50 }}
           >
-            <MenuItem value="">Language</MenuItem>
+            <MenuItem value={a}>Language {a}</MenuItem>
             <MenuItem value="en">English</MenuItem>
             <MenuItem value="vn">VietNam</MenuItem>
           </Select>

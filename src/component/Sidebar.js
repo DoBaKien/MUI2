@@ -33,7 +33,7 @@ export const Sidebar = ({ mode, setMode }) => {
   };
   return (
     <Box sx={{ flex: { xl: 1, md: 2, sm: 2,xs:1 }}}>
-      <Box p={2} sx={{ display: { xs: "none", lg: "block" } }}>
+      <Box p={2} sx={{ display: { xs: "none", lg: "block" }}}>
         <Box position="fixed">
           <List>
             <ListItem disablePadding>

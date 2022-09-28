@@ -26,6 +26,7 @@ export const Post = () => {
     setData("");
     console.log();
   };
+
   return (
     <>
       {data && (
@@ -59,25 +60,37 @@ export const Post = () => {
               style={{ color: "white" }}
             ></DisabledByDefaultIcon>
           </button>
-          <img
-            alt=""
-            src={Img2}
-            style={{
-              width: "auto",
-              maxWidth: "85%",
-              maxHeight: "85%",
-              marginLeft: 20,
-              marginTop:17
-            }}
-          />
           <Box
             sx={{
-              marginTop: 2,
-              width: 300,
-              height: 300,
+              maxWidth: { xl: "100%", md: "100%", sm: "100%", xs: 100 },
+              marginLeft: { xl: 15, md: 0, sm: 0, xs: 0 },
             }}
           >
-            <Card>
+            <Box
+              alt=""
+              component="img"
+              src={Img2}
+              sx={{
+                maxHeight: { xl: "70%", md: "70%", sm: "70%", xs: 500 },
+                maxWidth: { xl: "100%", md: "100%", sm: "100%", xs: 500 },
+                marginTop: { xl: 5, md: 5, sm: 5, xs: 2 },
+              }}
+            />
+          </Box>
+          <Box
+            sx={{
+              height: 300,
+              position: {
+                xl: "relative",
+                md: "relative",
+                sm: "relative",
+                xs: "absolute",
+              },
+              marginTop: { xl: 2, md: 2, sm: 2, xs: 35 },
+              width: { xl: 300, md: 300, sm: 300, xs: 500 },
+            }}
+          >
+            <Card style={{ marginTop: 25 }}>
               <CardHeader
                 avatar={
                   <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">

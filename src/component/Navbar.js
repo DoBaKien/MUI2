@@ -4,13 +4,14 @@ import {
   Toolbar,
   Typography,
   Box,
-  InputBase,
   Badge,
   Avatar,
   Menu,
   MenuItem,
   Select,
   FormControl,
+  Tooltip,
+  TextField,
 } from "@mui/material";
 import React, { useState } from "react";
 import PetsIcon from "@mui/icons-material/Pets";
@@ -61,9 +62,8 @@ export const Navbar = () => {
     navigate("/content");
   };
   const Search = styled("div")(({ theme }) => ({
-    background: "skyblue",
-    color: "black",
-    padding: "0 10px ",
+    backgroundColor: theme.palette.mode === "dark" ? "#3A3B3C" : "#F5F5F5",
+  
     borderRadius: theme.shape.borderRadius,
     width: "40%",
   }));
@@ -74,13 +74,10 @@ export const Navbar = () => {
 
   const { t, i18n } = useTranslation();
   const [age, setAge] = React.useState("");
-  const [a, setA] = useState("");
 
   const handleChange = (event) => {
     setAge(event.target.value);
-    setA(event.target.value);
     localStorage.setItem("lng", event.target.value);
-    console.log(event.target.value);
     return i18n.changeLanguage(event.target.value);
   };
 
@@ -99,7 +96,13 @@ export const Navbar = () => {
           onClick={handleHome}
         />
         <Search>
-          <InputBase placeholder="Search..." />
+          <TextField
+            hiddenLabel
+            variant="filled"
+            placeholder={t("Search...")}
+            size="small"
+            fullWidth
+          />
         </Search>
         <FormControl sx={{ minWidth: 120 }}>
           <Select
@@ -109,9 +112,11 @@ export const Navbar = () => {
             autoWidth
             sx={{ height: 50 }}
           >
-            <MenuItem value={a}>Language {a}</MenuItem>
-            <MenuItem value="en">English</MenuItem>
-            <MenuItem value="vn">VietNam</MenuItem>
+            <MenuItem value="">{t("Language")}</MenuItem>
+            <MenuItem value="en">{t("English")}</MenuItem>
+            <Tooltip title="Vietnamese" value="vn" placement="right">
+              <MenuItem>Tiếng Việt</MenuItem>
+            </Tooltip>
           </Select>
         </FormControl>
         <Icon>

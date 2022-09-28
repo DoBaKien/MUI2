@@ -14,11 +14,12 @@ import {
 import React from "react";
 import Img2 from "../imgs/2.jpg";
 import Img1 from "../imgs/1.jpg";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Map from "./Map";
 import { useTranslation } from "react-i18next";
 
@@ -42,10 +43,9 @@ const CardLeft = styled(Card)(({ theme }) => ({
   marginTop: 10,
   marginBottom: 10,
   [theme.breakpoints.up("sm")]: {
-    marginRight: "9%",
-    width: "45%",
+    marginRight: "4%",
+    width: "46%",
     float: "left",
-    marginTop: 10,
     marginBottom: 10,
   },
 }));
@@ -54,9 +54,8 @@ const CardRight = styled(Card)(({ theme }) => ({
   marginTop: 10,
   marginBottom: 10,
   [theme.breakpoints.up("sm")]: {
-    marginRight: "9%",
-    width: "45%",
-    marginTop: 10,
+    width: "49%",
+    marginTop: 20,
     marginBottom: 10,
   },
 }));
@@ -83,22 +82,31 @@ export const Content = () => {
             />
           </Tooltip>
         </IconButton>
-        <Card sx={{ paddingLeft: { xl: 0, md: 0, sm: 0,xs: 10 } }}>
+        <Card sx={{ paddingLeft: { xl: 0, md: 0, sm: 0, xs: 8 } }}>
           <CardContent style={{ float: "left" }}>
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="label"
-              style={{ padding: 0 }}
-            >
-              <input hidden accept="image/*" type="file" />
-              <Tooltip title="Changle Avatar" placement="left">
-                <CardMedia
-                  component="img"
-                  height="150px"
-                  image={Img1}
-                  alt="Paella dish"
-                />
+            <IconButton color="primary" style={{ padding: 0 }}>
+              <CardMedia
+                component="img"
+                height="150px"
+                image={Img1}
+                alt="Paella dish"
+              />
+
+              <Tooltip title="Changle Avatar" placement="right">
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="label"
+                  style={{
+                    backgroundColor: "lightgray",
+                    position: "absolute",
+                    top: 120,
+                    left: 125,
+                  }}
+                >
+                  <input hidden accept="image/*" type="file" />
+                  <PhotoCamera />
+                </IconButton>
               </Tooltip>
             </IconButton>
           </CardContent>
@@ -139,7 +147,9 @@ export const Content = () => {
             </Stack>
           </CardContent>
           <CardContent sx={{ textAlign: { sm: "right", xs: "left" } }}>
-            <Button variant="contained" startIcon={<EditIcon />}>{t("Edit Profile")}</Button>
+            <Button variant="contained" startIcon={<EditIcon />}>
+              {t("Edit Profile")}
+            </Button>
           </CardContent>
         </Card>
       </Card>

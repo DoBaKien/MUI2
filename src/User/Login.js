@@ -1,23 +1,18 @@
 import {
   Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  Link,
+  FormControl,
+  MenuItem,
+  Select,
   styled,
-  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+
+import { UI } from "./UI";
 
 function Login() {
-  const [showPass, setShowPass] = useState(false);
-
   const BoxLogin = styled(Box)(({ theme }) => ({
     width: "500px",
     borderRadius: 10,
@@ -32,34 +27,34 @@ function Login() {
     },
   }));
 
-  const Input = styled(TextField)(({ theme }) => ({
-    marginTop: 20,
-    width: 400,
-    [theme.breakpoints.down("sm")]: {
-      width: 300
-    },
-  }));
-
-  const { t, i18n } = useTranslation();
-  const [a, setA] = useState("");
-  const handleChangeLng = (lng) => {
-    setA(lng);
-    return i18n.changeLanguage(lng);
+  const { t,i18n } = useTranslation();
+  const [age, setAge] = useState("");
+  const handleChange = (event) => {
+    setAge(event.target.value);
+    localStorage.setItem("lng", event.target.value);
+    console.log(event.target.value);
+    return i18n.changeLanguage(event.target.value);
   };
-  useEffect(() => {
-    localStorage.setItem("lng", a);
-  }, [a]);
 
-  const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/home");
-  };
   return (
     <Box bgcolor={"background.default"} color={"text.primary"}>
       <Box style={{ width: "100%", height: "790px" }}>
         <Box>
-          <Button onClick={() => handleChangeLng("en")}>English</Button>
-          <Button onClick={() => handleChangeLng("vn")}>VietNam</Button>
+          <FormControl sx={{ minWidth: 120 }}>
+            <Select
+              displayEmpty
+              value={age}
+              onChange={handleChange}
+              autoWidth
+              sx={{ height: 50 }}
+            >
+              <MenuItem value="">{t("Language")}</MenuItem>
+              <MenuItem value="en">{t("English")}</MenuItem>
+              <Tooltip title="Vietnamese" value="vn" placement="right">
+                <MenuItem>Tiếng Việt</MenuItem>
+              </Tooltip>
+            </Select>
+          </FormControl>
         </Box>
         <Box
           sx={{ display: { xs: "none", lg: "block" } }}
@@ -87,90 +82,8 @@ function Login() {
             SMART TECH - SMART LIFE
           </Typography>
         </Box>
-        <BoxLogin style={{ height: 350 }}>
-          <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-            <Box
-              pb={2}
-              style={{ justifyContent: "center", textAlign: "center" }}
-            >
-              <Input
-                label={t("User Name")}
-                variant="outlined"
-                fullWidth
-                // onChange={(e) => handleChangleUserName(e.target.value)}
-                // error={userNameError}
-              />
-
-              <Input
-                label={t("Password")}
-                type={showPass ? "text" : "password"}
-                // error={passwordError}
-                variant="outlined"
-                // onChange={(e) => handleChanglePassword(e.target.value)}
-                InputProps={{
-                  endAdornment: (
-                    <Tooltip title={showPass ? "Show" : "Hidden"}>
-                      <InputAdornment position="end">
-                        <IconButton onClick={() => setShowPass(!showPass)}>
-                          {showPass ? (
-                            <VisibilityIcon />
-                          ) : (
-                            <VisibilityOffIcon />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    </Tooltip>
-                  ),
-                }}
-              />
-            </Box>
-            <Box style={{ justifyContent: "center", textAlign: "center" }}>
-              <Button
-                type="submit"
-                variant="contained"
-                sx={{ width: { xs: 300, lg: 400 } }}
-                style={{
-                  borderRadius: 5,
-                  height: 50,
-                  fontSize: 20,
-                  backgroundColor: "#1976D2",
-                }}
-              >
-                {t("log in")}
-              </Button>
-            </Box>
-          </form>
-          <Box
-            style={{
-              justifyContent: "center",
-              textAlign: "center",
-              marginTop: 20,
-            }}
-          >
-            <Link component="button" variant="body2">
-              {t("Forgotten password?")}
-            </Link>
-          </Box>
-          <Box
-            style={{
-              justifyContent: "center",
-              textAlign: "center",
-              marginTop: 10,
-            }}
-          >
-            <Button
-              variant="contained"
-              style={{
-                width: 200,
-                borderRadius: 5,
-                height: 50,
-                fontSize: 20,
-                backgroundColor: "#1976D2",
-              }}
-            >
-              {t("sign up")}
-            </Button>
-          </Box>
+        <BoxLogin>
+          <UI />
         </BoxLogin>
       </Box>
     </Box>

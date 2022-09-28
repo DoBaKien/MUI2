@@ -31,9 +31,12 @@ export const Sidebar = ({ mode, setMode }) => {
   const handleHome = () => {
     navigate("/home");
   };
+  const handlePage = () => {
+    navigate("/page");
+  };
   return (
-    <Box sx={{ flex: { xl: 1, md: 2, sm: 2,xs:1 }}}>
-      <Box p={2} sx={{ display: { xs: "none", lg: "block" }}}>
+    <Box sx={{ flex: { xl: 1, md: 2, sm: 2, xs: 1 } }}>
+      <Box p={2} sx={{ display: { xs: "none", lg: "block" } }}>
         <Box position="fixed">
           <List>
             <ListItem disablePadding>
@@ -45,7 +48,7 @@ export const Sidebar = ({ mode, setMode }) => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handlePage}>
                 <ListItemIcon>
                   <ArticleIcon />
                 </ListItemIcon>
@@ -119,56 +122,56 @@ export const Sidebar = ({ mode, setMode }) => {
             <ListItem disablePadding>
               <ListItemButton onClick={handleHome}>
                 <ListItemIcon>
-                  <HomeIcon fontSize="large" />
+                  <HomeIcon />
+                </ListItemIcon>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton component="a">
+                <ListItemIcon>
+                  <ArticleIcon onClick={handlePage}/>
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton component="a" href="#home">
                 <ListItemIcon>
-                  <ArticleIcon fontSize="large" />
+                  <GroupIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton component="a" href="#home">
                 <ListItemIcon>
-                  <GroupIcon fontSize="large" />
+                  <HomeIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton component="a" href="#home">
                 <ListItemIcon>
-                  <HomeIcon fontSize="large" />
+                  <PersonIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton component="a" href="#home">
                 <ListItemIcon>
-                  <PersonIcon fontSize="large" />
+                  <InsertPhotoIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton component="a" href="#home">
                 <ListItemIcon>
-                  <InsertPhotoIcon fontSize="large" />
-                </ListItemIcon>
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
-                <ListItemIcon>
-                  <SettingsIcon fontSize="large" />
+                  <SettingsIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton onClick={handle}>
                 <ListItemIcon>
-                  <AccountBoxIcon fontSize="large" />
+                  <AccountBoxIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
@@ -178,11 +181,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 onClick={(e) => setMode(mode === "light" ? "dark" : "light")}
                 color="inherit"
               >
-                {mode === "dark" ? (
-                  <Brightness7Icon fontSize="large" />
-                ) : (
-                  <Brightness4Icon fontSize="large" />
-                )}
+                {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
               </IconButton>
             </ListItem>
           </List>

@@ -10,7 +10,7 @@ function App({mode,setMode}) {
   return (
       <Box bgcolor={"background.default"} color={"text.primary"}>
         <Navbar color="black"/>
-        <Stack direction="row"  justifyContent="space-evenly">
+        <Stack direction="row"  >
           <Sidebar setMode={setMode} mode={mode} />
           <Feed/>
           <Rightbar sx={{ display: { xs: "none", sm: "block" } }}/>

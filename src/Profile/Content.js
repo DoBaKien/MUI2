@@ -22,6 +22,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Map from "./Map";
 import { useTranslation } from "react-i18next";
+import "./Add.css";
 
 const Typograph = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: {
@@ -60,17 +61,24 @@ const CardRight = styled(Card)(({ theme }) => ({
   },
 }));
 
+const Camera = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  top: 120,
+  left: 125,
+  backgroundColor: theme.palette.mode === "dark" ? "#3A3B3C" : "lightgray",
+}));
+
 export const Content = () => {
   const { t } = useTranslation();
   return (
     <Box sx={{ flex: { xl: 6, md: 10, sm: 20, xs: 6 } }}>
       <Card sx={{ marginTop: 2 }}>
-        <IconButton
+        <Button
           color="primary"
-          aria-label="upload picture"
           component="label"
           height="300px"
           style={{ width: "100%", padding: 0 }}
+          className="MyCustomButton"
         >
           <input hidden accept="image/*" type="file" />
           <Tooltip title="Changle Cover" placement="bottom">
@@ -79,9 +87,12 @@ export const Content = () => {
               height="300px"
               image={Img2}
               alt="Paella dish"
+              className="imgBook"
             />
           </Tooltip>
-        </IconButton>
+          
+        </Button>
+
         <Card sx={{ paddingLeft: { xl: 0, md: 0, sm: 0, xs: 8 } }}>
           <CardContent style={{ float: "left" }}>
             <IconButton color="primary" style={{ padding: 0 }}>
@@ -93,20 +104,10 @@ export const Content = () => {
               />
 
               <Tooltip title="Changle Avatar" placement="right">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="label"
-                  style={{
-                    backgroundColor: "lightgray",
-                    position: "absolute",
-                    top: 120,
-                    left: 125,
-                  }}
-                >
+                <Camera color="primary" component="label">
                   <input hidden accept="image/*" type="file" />
                   <PhotoCamera />
-                </IconButton>
+                </Camera>
               </Tooltip>
             </IconButton>
           </CardContent>

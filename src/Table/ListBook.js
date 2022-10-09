@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 import PropTypes from "prop-types";
-import { Box, Button, Grid, Link, Paper, Rating, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Link,
+  Paper,
+  Rating,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const ExpandableCell = ({ value }) => {
   const [expanded, setExpanded] = React.useState(false);
@@ -33,19 +43,37 @@ ExpandableCell.propTypes = {
 };
 
 function ListBook() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const [pageSize, setPageSize] = useState(10);
+  const deleteCustomer = (id) => {
+    swal({
+      title: `${t("Are you sure")}`,
+      text: `${t("Once deleted, you will not be able to recover this data")}`,
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        deletae(id);
+        swal(`${t("You have successfully deleted")}`, {
+          icon: "success",
+        });
+      } else {
+        swal(`${t("Your data file is safe!")}`);
+      }
+    });
+  };
 
-  const deleteCustomer = async (id) => {
+  const deletae = async (id) => {
     await fetch(`http://localhost:3001/books/${id}`, { method: "DELETE" });
     setTableData(tableData.filter((customer) => customer.id !== id));
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 100 },
+    { field: "id", headerName: "ID", width: 80 },
     {
       field: "pic",
-      headerName: "Image",
+      headerName: `${t("Image")}`,
       width: 100,
       height: 200,
       renderCell: (params) => (
@@ -54,13 +82,13 @@ function ListBook() {
     },
     {
       field: "name",
-      headerName: "Name",
+      headerName: `${t("Name")}`,
       width: 160,
       renderCell: (params) => <ExpandableCell {...params} />,
     },
     {
       field: "selected",
-      headerName: "Geners",
+      headerName: `${t("Geners")}`,
       width: 160,
       renderCell: (params) => (
         <Box sx={{ flexGrow: 1 }}>
@@ -73,7 +101,7 @@ function ListBook() {
                     padding: 2,
                     textAlign: "center",
                     margin: 5,
-                    borderRadius: 15,
+                    borderRadius: 5,
                   }}
                 >
                   {valu}
@@ -86,7 +114,7 @@ function ListBook() {
     },
     {
       field: "details",
-      headerName: "Details",
+      headerName: `${t("Details")}`,
       hideable: false,
       width: 300,
       height: 200,
@@ -95,13 +123,13 @@ function ListBook() {
 
     {
       field: "rating",
-      headerName: "Rating",
+      headerName: `${t("Rating")}`,
       width: 150,
       renderCell: (params) => <Rating value={params.value} readOnly />,
     },
     {
       field: "actions",
-      headerName: "Edit",
+      headerName: `${t("Edit")}`,
       type: "actions",
       width: 130,
       getActions: (params) => [
@@ -119,7 +147,7 @@ function ListBook() {
     },
     {
       field: "delete",
-      headerName: "Delete",
+      headerName: `${t("Delete")}`,
       type: "actions",
       width: 120,
       getActions: (params) => [
@@ -155,8 +183,15 @@ function ListBook() {
 
   return (
     <>
-    <Typography variant="h2" sx={{justifyContent:"center", textAlign:"center"}}>List Book</Typography>
-      <Button variant="text" startIcon={<AddIcon />} onClick={handleAdd}>{t("add book")}</Button>
+      <Typography
+        variant="h2"
+        sx={{ justifyContent: "center", textAlign: "center" }}
+      >
+        List Book
+      </Typography>
+      <Button variant="text" startIcon={<AddIcon />} onClick={handleAdd}>
+        {t("add book")}
+      </Button>
       <div style={{ height: 656, width: "100%" }}>
         <DataGrid
           rowHeight={150}

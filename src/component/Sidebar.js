@@ -15,12 +15,13 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import PersonIcon from "@mui/icons-material/Person";
 import ArticleIcon from "@mui/icons-material/Article";
-import GroupIcon from "@mui/icons-material/Group";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import ModeNightIcon from "@mui/icons-material/ModeNight";
 import { useNavigate } from "react-router-dom";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTranslation } from "react-i18next";
+import MessageIcon from "@mui/icons-material/Message";
 
 export const Sidebar = ({ mode, setMode }) => {
   const { t } = useTranslation();
@@ -33,6 +34,18 @@ export const Sidebar = ({ mode, setMode }) => {
   };
   const handlePage = () => {
     navigate("/page");
+  };
+  const handleChart = () => {
+    navigate("/chart");
+  };
+  const handleMessage = () => {
+    navigate("/message");
+  };
+  const handlePhoto = () => {
+    navigate("/photos");
+  };
+  const handlePhoto2 = () => {
+    navigate("/photos2");
   };
   return (
     <Box sx={{ flex: { xl: 1, md: 2, sm: 2, xs: 1 } }}>
@@ -56,23 +69,23 @@ export const Sidebar = ({ mode, setMode }) => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handleChart}>
                 <ListItemIcon>
-                  <GroupIcon />
+                  <LeaderboardIcon />
                 </ListItemIcon>
-                <ListItemText primary={t("Group")} />
+                <ListItemText primary={t("Chart")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handleMessage}>
                 <ListItemIcon>
-                  <HomeIcon />
+                  <MessageIcon />
                 </ListItemIcon>
-                <ListItemText primary={t("Market")} />
+                <ListItemText primary={t("Message")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handlePhoto2}>
                 <ListItemIcon>
                   <PersonIcon />
                 </ListItemIcon>
@@ -80,7 +93,7 @@ export const Sidebar = ({ mode, setMode }) => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handlePhoto}>
                 <ListItemIcon>
                   <InsertPhotoIcon />
                 </ListItemIcon>
@@ -129,21 +142,21 @@ export const Sidebar = ({ mode, setMode }) => {
             <ListItem disablePadding>
               <ListItemButton component="a">
                 <ListItemIcon>
-                  <ArticleIcon onClick={handlePage}/>
+                  <ArticleIcon onClick={handlePage} />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handleChart}>
                 <ListItemIcon>
-                  <GroupIcon />
+                  <LeaderboardIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handleMessage}>
                 <ListItemIcon>
-                  <HomeIcon />
+                  <MessageIcon />
                 </ListItemIcon>
               </ListItemButton>
             </ListItem>
@@ -155,7 +168,7 @@ export const Sidebar = ({ mode, setMode }) => {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#home">
+              <ListItemButton onClick={handlePhoto}>
                 <ListItemIcon>
                   <InsertPhotoIcon />
                 </ListItemIcon>

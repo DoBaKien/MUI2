@@ -29,5 +29,17 @@
     "Search...":"Tìm kiếm...",
     "CHAPTERS":"DANH SÁCH CHƯƠNG",
     "Author": "Tác giả",
-    "Artist": "Họa sĩ"
+    "Artist": "Họa sĩ",
+    "Are you sure": "Bạn chắc chứ",
+    "Once deleted, you will not be able to recover this data":"Một khi đã xóa thì không thử khôi phục dữ liệu",
+    "You have successfully deleted": "Bạn đã xóa thành công",
+    "Your data file is safe!": "Dữ liệu an toàn",
+    "Image":"Hình",
+    "Name":"Tên",
+    "Details":"Nội dung",
+    "Rating":"Đánh giá",
+    "Edit":"Sửa",
+    "Delete": "Xóa",
+    "Add":"Thêm",
+    "Create a new book":"Thêm sách mới"
 }

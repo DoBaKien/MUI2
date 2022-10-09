@@ -12,14 +12,17 @@ import {
   FormControl,
   Tooltip,
   TextField,
+  InputAdornment,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PetsIcon from "@mui/icons-material/Pets";
 import { useTranslation } from "react-i18next";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Img1 from "../imgs/1.jpg";
 import { useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
+import Axios from "axios";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -47,6 +50,7 @@ const UserBox = styled(Box)(({ theme }) => ({
 export const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -56,14 +60,13 @@ export const Navbar = () => {
 
   const navigate = useNavigate();
   const handle = () => {
-    navigate("/login");
+    navigate("/");
   };
   const handle1 = () => {
     navigate("/content");
   };
   const Search = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#3A3B3C" : "#F5F5F5",
-  
     borderRadius: theme.shape.borderRadius,
     width: "40%",
   }));
@@ -73,14 +76,23 @@ export const Navbar = () => {
   };
 
   const { t, i18n } = useTranslation();
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = useState("");
 
   const handleChange = (event) => {
     setAge(event.target.value);
     localStorage.setItem("lng", event.target.value);
+    Axios.put(`http://localhost:3001/Language/1`, {
+      lng: event.target.value,
+    }).then((res) => {
+      console.log(res);
+    });
     return i18n.changeLanguage(event.target.value);
   };
-
+  useEffect(() => {
+    Axios.get("http://localhost:3001/Language/1").then((res) => {
+      setAge(res.data.lng);
+    });
+  }, []);
   return (
     <AppBar position="sticky">
       <StyledToolbar>
@@ -98,21 +110,27 @@ export const Navbar = () => {
         <Search>
           <TextField
             hiddenLabel
-            variant="filled"
+            variant="standard"
             placeholder={t("Search...")}
-            size="small"
             fullWidth
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
           />
         </Search>
         <FormControl sx={{ minWidth: 120 }}>
           <Select
             displayEmpty
             value={age}
+            defaultValue={age}
             onChange={handleChange}
             autoWidth
-            sx={{ height: 50 }}
+            sx={{ height: 50, color: "white" }}
           >
-            <MenuItem value="">{t("Language")}</MenuItem>
             <MenuItem value="en">{t("English")}</MenuItem>
             <Tooltip title="Vietnamese" value="vn" placement="right">
               <MenuItem>Tiếng Việt</MenuItem>
@@ -136,6 +154,7 @@ export const Navbar = () => {
             onClick={handleClick}
           />
         </Icon>
+
         <UserBox
           aria-controls={open ? "basic-menu" : undefined}
           aria-haspopup="true"

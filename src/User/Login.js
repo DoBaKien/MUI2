@@ -9,22 +9,28 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import UI from "./UI";
 
-import { UI } from "./UI";
 
-function Login() {
+
+function Login({ mode }) {
   const BoxLogin = styled(Box)(({ theme }) => ({
     width: "500px",
     borderRadius: 10,
     position: "absolute",
     top: 200,
     right: 200,
+    backgroundColor:"red",
     boxShadow: "1px 1px 1px 5px #AAA",
     [theme.breakpoints.down("sm")]: {
       left: 0,
       width: "100%",
       boxShadow: "none",
     },
+  }));
+
+  const BoxContainer = styled(Box)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "black" : "#F0F2F5",
   }));
 
   const { t,i18n } = useTranslation();
@@ -37,7 +43,7 @@ function Login() {
   };
 
   return (
-    <Box bgcolor={"background.default"} color={"text.primary"}>
+    <BoxContainer color={"text.primary"}>
       <Box style={{ width: "100%", height: "790px" }}>
         <Box>
           <FormControl sx={{ minWidth: 120 }}>
@@ -83,10 +89,10 @@ function Login() {
           </Typography>
         </Box>
         <BoxLogin>
-          <UI />
+          <UI mode={mode}  />
         </BoxLogin>
       </Box>
-    </Box>
+    </BoxContainer>
   );
 }
 

@@ -5,11 +5,10 @@ import {
   IconButton,
   InputAdornment,
   Link,
-  styled,
   TextField,
   Tooltip,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useTranslation } from "react-i18next";
@@ -17,7 +16,8 @@ import { useNavigate } from "react-router-dom";
 
 var regUserName = /^[a-zA-Z0-9]{6,16}$/;
 var regpass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-export const UI = () => {
+
+export default function UI({ mode }) {
   const [userName, setUserName] = useState("");
   const [userNameError, setUserNameError] = useState(false);
   const [password, setPassword] = useState("");
@@ -29,6 +29,9 @@ export const UI = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/home");
+  };
+
+  const handleSignUp = (e) => {
     console.log(userName);
     console.log(password);
   };
@@ -52,20 +55,25 @@ export const UI = () => {
     }
   };
 
-  const Containers = styled(Container)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#2C2C2C" : "#F5F5F5",
-  }));
+  const [bg, setBg] = useState("#2C2C2C");
+  useEffect(() => {
+    if (mode === "dark") {
+      setBg("#2C2C2C");
+    } else {
+      setBg("#F5F5F5");
+    }
+  }, [mode]);
+
   return (
-    <Containers pb={2}>
+    <Container pb={2} style={{ backgroundColor: bg }}>
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Box>
+        <Box pb={2}>
           <TextField
             label={t("User Name")}
             variant="outlined"
             fullWidth
             className="asd"
-            // sx={{ input: { color: "white" } }}
-            style={{ marginTop: 20, borderColor: "red" }}
+            style={{ marginTop: 20 }}
             onChange={(e) => handleChangleUserName(e.target.value)}
             error={userNameError}
           />
@@ -73,7 +81,6 @@ export const UI = () => {
           <TextField
             label={t("Password")}
             style={{ marginTop: 20, marginBottom: 20 }}
-            // sx={{ input: { color: "black" } }}
             fullWidth
             error={passwordError}
             type={showPass ? "text" : "password"}
@@ -81,7 +88,7 @@ export const UI = () => {
             onChange={(e) => handleChanglePassword(e.target.value)}
             InputProps={{
               endAdornment: (
-                <Tooltip title={showPass ? "Show" : "Hidden"}>
+                <Tooltip title={showPass ? `${t("Show")}` : `${t("Hidden")}`}>
                   <InputAdornment position="end">
                     <IconButton onClick={() => setShowPass(!showPass)}>
                       {showPass ? <VisibilityIcon /> : <VisibilityOffIcon />}
@@ -109,6 +116,7 @@ export const UI = () => {
           </Button>
         </Box>
       </form>
+
       <Box
         style={{
           justifyContent: "center",
@@ -138,10 +146,11 @@ export const UI = () => {
             marginBottom: 10,
             backgroundColor: "#1976D2",
           }}
+          onClick={handleSignUp}
         >
           {t("sign up")}
         </Button>
       </Box>
-    </Containers>
+    </Container>
   );
-};
+}

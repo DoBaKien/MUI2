@@ -17,24 +17,35 @@ import SendIcon from "@mui/icons-material/Send";
 
 function Chat() {
   const Search = styled("div")(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#3A3B3C" : "#F5F5F5",
+    backgroundColor: theme.palette.mode === "dark" ? "#3A3B3C" : "#E8E8E8",
     borderRadius: 8,
     width: "80%",
     height: 35,
   }));
+
+  const Boxas = styled(Box)(() => ({
+    justifyContent: "end",
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row-reverse",
+  }));
+
   return (
     <Box>
       <Stack
         direction="column"
-        sx={{ overflowY: "scroll", height: window.innerHeight - 200 }}
+        sx={{
+          overflowY: "scroll",
+          height: {
+            xl: window.innerHeight - 130,
+            md: window.innerHeight - 130,
+            sm: window.innerHeight - 130,
+            xs: window.innerHeight - 180,
+          },
+        }}
       >
         {Array.from(Array(20)).map((_, index) => (
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
+          <Boxas key={index}>
             <Avatar
               alt="Remy Sharp"
               src={Img1}
@@ -43,11 +54,10 @@ function Chat() {
             <Chip
               label="Chat Content"
               variant="outlined"
-              key={index}
               color="primary"
               sx={{ width: 200, marginTop: 2 }}
             />
-          </Box>
+          </Boxas>
         ))}
       </Stack>
       <Box
@@ -73,10 +83,7 @@ function Chat() {
           </Tooltip>
         </Stack>
         <Search>
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            inputProps={{ "aria-label": "search google maps" }}
-          />
+          <InputBase sx={{ ml: 1, flex: 1 }} fullWidth />
         </Search>
         <Stack direction="row" gap={1}>
           <Tooltip title="Stickers">

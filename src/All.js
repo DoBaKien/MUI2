@@ -9,9 +9,11 @@ import Table from "./Table/Table";
 import Books from "./Table/Book";
 import AddBook from "./Table/AddBook";
 import Chart from "./Chart/Chart";
-import Mess from "./Message/Mess";
+import Mess from "./Messenger/Mess";
 import Client from "./Photo/Client";
 import Client2 from "./Photo/Client2";
+import Body from "./ListFriend/Body";
+import Register from "./User/Register";
 
 function All() {
   const [mode, setMode] = useState("dark");
@@ -45,7 +47,7 @@ function All() {
           element={<Chart setMode={setMode} mode={mode} />}
         />
          <Route
-          path="/message"
+          path="/messenger"
           element={<Mess setMode={setMode} mode={mode} />}
         />
         <Route
@@ -55,6 +57,14 @@ function All() {
          <Route
           path="/photos2"
           element={<Client2 setMode={setMode} mode={mode} />}
+        />
+        <Route
+          path="/friend"
+          element={<Body setMode={setMode} mode={mode} />}
+        />
+         <Route
+          path="/register"
+          element={<Register mode={mode} />}
         />
       </Routes>
     </ThemeProvider>

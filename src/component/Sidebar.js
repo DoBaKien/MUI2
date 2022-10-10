@@ -39,7 +39,7 @@ export const Sidebar = ({ mode, setMode }) => {
     navigate("/chart");
   };
   const handleMessage = () => {
-    navigate("/message");
+    navigate("/messenger");
   };
   const handlePhoto = () => {
     navigate("/photos");
@@ -81,7 +81,7 @@ export const Sidebar = ({ mode, setMode }) => {
                 <ListItemIcon>
                   <MessageIcon />
                 </ListItemIcon>
-                <ListItemText primary={t("Message")} />
+                <ListItemText primary={t("Messenger")} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>

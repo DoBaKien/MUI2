@@ -5,14 +5,15 @@ import {
   CardContent,
   Divider,
   IconButton,
+  InputBase,
   Stack,
   styled,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Navbar } from "../component/Navbar";
+// import { Navbar } from "../component/Navbar";
 
-import ListFriend from "./ListFriend";
+import ListChat from "./ListChat";
 import { Side } from "./Side";
 import Img1 from "../imgs/1.jpg";
 
@@ -22,9 +23,12 @@ import VideocamIcon from "@mui/icons-material/Videocam";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./Mess.css";
 import Chat from "./Chat";
+import { useTranslation } from "react-i18next";
 
 function Mess({ mode, setMode }) {
   const [show, setShow] = useState(false);
+
+  const { t } = useTranslation();
 
   const CardRight = styled(Card)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#4B4D4F" : "#D3D3D3",
@@ -37,10 +41,21 @@ function Mess({ mode, setMode }) {
   }));
   const StackContact = styled(Stack)(({ theme }) => ({
     marginTop: 10,
-    marginRight: 10,
-    [theme.breakpoints.up("lg")]: {
-      justifyContent: "end",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "start",
+      marginTop: 0,
+      marginRight: 0,
     },
+  }));
+
+  const Search = styled("div")(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#3A3B3C" : "#E8E8E8",
+    borderRadius: 8,
+    width: "90%",
+    height: 40,
+    marginLeft: 20,
+    marginTop: 10,
+    marginBottom: 5,
   }));
 
   return (
@@ -49,7 +64,7 @@ function Mess({ mode, setMode }) {
       color={"text.primary"}
       sx={{ overflow: "hidden" }}
     >
-      <Navbar color="black" />
+      {/* <Navbar color="black" /> */}
       <Stack
         direction="row"
         spacing={1}
@@ -61,46 +76,42 @@ function Mess({ mode, setMode }) {
           sx={{
             overflowY: "scroll",
             overflow: "auto",
-            flex: { xl: 2, md: 2, sm: 6, xs: 4 },
+            flex: { xl: 2, md: 2, sm: 8, xs: 4 },
           }}
         >
-          <Stack direction="row" spacing={2} sx={{ overflowX: "scroll" }}>
-            {Array.from(Array(10)).map((_, index) => (
-              <Avatar
-                alt="online"
-                key={index}
-                src={Img1}
-                sx={{
-                  width: 50,
-                  height: 50,
-                }}
-              />
-            ))}
-          </Stack>
+          <Search>
+            <InputBase
+              sx={{ ml: 1, flex: 1, fontSize: 22 }}
+              fullWidth
+              placeholder={t("Search...")}
+            />
+          </Search>
+
           <Stack
             spacing={0.5}
             sx={{
               marginTop: 1,
               overflowY: "scroll",
-              height: window.innerHeight - 140,
+              height: window.innerHeight - 60,
             }}
           >
             {Array.from(Array(10)).map((_, index) => (
-              <ListFriend key={index} />
+              <ListChat key={index} />
             ))}
           </Stack>
         </Box>
         <Box
           sx={{
             flex: { xl: 6, md: 10, sm: 20, xs: 6 },
-            height: window.innerHeight - 66,
+            height: window.innerHeight - 8,
           }}
         >
           <Box>
             <CardRight variant="outlined">
               <CardContent
                 sx={{
-                  float: "left",
+                  float: { xl: "left", md: "left", sm: "left", xs: "" },
+                  width: { xl: "75%", md: "left", sm: "60%", xs: "100%" },
                 }}
               >
                 <Avatar

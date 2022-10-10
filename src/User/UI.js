@@ -13,6 +13,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 var regUserName = /^[a-zA-Z0-9]{6,16}$/;
 var regpass = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
@@ -25,15 +26,25 @@ export default function UI({ mode }) {
   const [showPass, setShowPass] = useState(false);
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/home");
+    axios
+      .post("/login", {
+        phoneNumber:  userName,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   const handleSignUp = (e) => {
-    console.log(userName);
-    console.log(password);
+    e.preventDefault();
+    navigate("/register");
   };
   const handleChangleUserName = (e) => {
     if (regUserName.test(e)) {

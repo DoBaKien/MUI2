@@ -10,9 +10,8 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import UI from "./UI";
-
-
-
+import Logo from "../imgs/logo.png";
+import axios from "axios"
 function Login({ mode }) {
   const BoxLogin = styled(Box)(({ theme }) => ({
     width: "500px",
@@ -20,7 +19,7 @@ function Login({ mode }) {
     position: "absolute",
     top: 200,
     right: 200,
-    backgroundColor:"red",
+    backgroundColor: "red",
     boxShadow: "1px 1px 1px 5px #AAA",
     [theme.breakpoints.down("sm")]: {
       left: 0,
@@ -33,7 +32,7 @@ function Login({ mode }) {
     backgroundColor: theme.palette.mode === "dark" ? "black" : "#F0F2F5",
   }));
 
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [age, setAge] = useState("");
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -42,6 +41,8 @@ function Login({ mode }) {
     return i18n.changeLanguage(event.target.value);
   };
 
+
+ 
   return (
     <BoxContainer color={"text.primary"}>
       <Box style={{ width: "100%", height: "790px" }}>
@@ -64,32 +65,19 @@ function Login({ mode }) {
         </Box>
         <Box
           sx={{ display: { xs: "none", lg: "block" } }}
-          style={{ top: 200, left: 150, position: "absolute" }}
+          style={{ top: 120, left: 10, position: "absolute" }}
         >
-          <Typography
-            variant="h1"
-            color="text.primary"
-            style={{ fontFamily: "Optima", float: "left", color: "yellow" }}
-          >
-            BEE&nbsp;
-          </Typography>
-          <Typography
-            variant="h1"
-            color="text.primary"
-            style={{ fontFamily: "Optima" }}
-          >
-            TECH
-          </Typography>
+          <img alt="logo" src={Logo} width="800" height={300} />
           <Typography
             variant="h3"
             color="text.primary"
-            style={{ fontFamily: "Optima" }}
+            style={{ fontFamily: "Arial", textAlign: "center" }}
           >
-            SMART TECH - SMART LIFE
+            {t("CONNECTING PEOPLE")}
           </Typography>
         </Box>
         <BoxLogin>
-          <UI mode={mode}  />
+          <UI mode={mode} />
         </BoxLogin>
       </Box>
     </BoxContainer>
